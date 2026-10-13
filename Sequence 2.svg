@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1120" viewBox="0 0 1400 1120">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,4 L0,8 z" fill="#334155"/>
+    </marker>
+    <marker id="returnArrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,4 L0,8 z" fill="#64748b"/>
+    </marker>
+    <style>
+      text { font-family: Arial, sans-serif; fill: #172033; }
+      .title { font-size: 26px; font-weight: bold; }
+      .head { font-size: 15px; font-weight: bold; }
+      .msg { font-size: 14px; }
+      .note { font-size: 13px; fill: #475569; }
+      .life { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 7 6; }
+      .call { stroke: #334155; stroke-width: 1.8; fill: none; marker-end: url(#arrow); }
+      .ret { stroke: #64748b; stroke-width: 1.6; stroke-dasharray: 6 4; fill: none; marker-end: url(#returnArrow); }
+      .box { fill: #e0f2fe; stroke: #0284c7; stroke-width: 1.5; rx: 8; }
+      .actor { fill: #f1f5f9; stroke: #475569; stroke-width: 1.5; rx: 8; }
+      .file { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; rx: 8; }
+      .alt { fill: #fff7ed; stroke: #fb923c; stroke-width: 1.4; rx: 6; }
+      .divider { stroke: #cbd5e1; stroke-width: 1; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="1120" fill="#ffffff"/>
+  <text x="700" y="38" text-anchor="middle" class="title">ATM Management System — Sequence Diagram</text>
+  <text x="700" y="62" text-anchor="middle" class="note">Flow represented: account creation, rejected deletion, balance check, report, save, and exit</text>
+
+  <!-- Participant headers -->
+  <rect x="42" y="82" width="130" height="48" class="actor"/><text x="107" y="111" text-anchor="middle" class="head">User</text>
+  <rect x="225" y="82" width="170" height="48" class="box"/><text x="310" y="111" text-anchor="middle" class="head">ATMSystem</text>
+  <rect x="465" y="82" width="170" height="48" class="box"/><text x="550" y="111" text-anchor="middle" class="head">Account / Card</text>
+  <rect x="705" y="82" width="130" height="48" class="box"/><text x="770" y="111" text-anchor="middle" class="head">ATM</text>
+  <rect x="905" y="82" width="170" height="48" class="box"/><text x="990" y="111" text-anchor="middle" class="head">FileManager</text>
+  <rect x="1150" y="82" width="200" height="48" class="file"/><text x="1250" y="111" text-anchor="middle" class="head">TXT files / console</text>
+
+  <!-- Lifelines -->
+  <line x1="107" y1="130" x2="107" y2="1060" class="life"/>
+  <line x1="310" y1="130" x2="310" y2="1060" class="life"/>
+  <line x1="550" y1="130" x2="550" y2="1060" class="life"/>
+  <line x1="770" y1="130" x2="770" y2="1060" class="life"/>
+  <line x1="990" y1="130" x2="990" y2="1060" class="life"/>
+  <line x1="1250" y1="130" x2="1250" y2="1060" class="life"/>
+
+  <!-- Add account -->
+  <rect x="28" y="148" width="1344" height="27" fill="#eff6ff"/><text x="42" y="167" class="head">1. Create account (menu option 1)</text>
+  <path d="M107 190 H310" class="call"/><text x="207" y="184" text-anchor="middle" class="msg">choose Add Record</text>
+  <path d="M310 220 H107" class="ret"/><text x="207" y="214" text-anchor="middle" class="msg">request name and opening balance</text>
+  <path d="M107 250 H310" class="call"/><text x="207" y="244" text-anchor="middle" class="msg">ABC, 30000</text>
+  <path d="M310 280 H550" class="call"/><text x="430" y="274" text-anchor="middle" class="msg">create Account(id 1002)</text>
+  <path d="M310 310 H550" class="call"/><text x="430" y="304" text-anchor="middle" class="msg">create Card(CARD1002, PIN 1234)</text>
+  <path d="M310 340 H990" class="call"/><text x="650" y="334" text-anchor="middle" class="msg">saveData()</text>
+  <path d="M990 370 H1250" class="call"/><text x="1120" y="364" text-anchor="middle" class="msg">write ACCOUNTS.TXT</text>
+  <path d="M990 400 H1250" class="call"/><text x="1120" y="394" text-anchor="middle" class="msg">write CARDS.TXT</text>
+  <path d="M990 430 H1250" class="call"/><text x="1120" y="424" text-anchor="middle" class="msg">write TRANS.TXT and ATM_DATA.TXT</text>
+  <path d="M990 460 H1250" class="call"/><text x="1120" y="454" text-anchor="middle" class="msg">displaySavedFiles(): print saved text</text>
+  <path d="M310 490 H107" class="ret"/><text x="207" y="484" text-anchor="middle" class="msg">show account/card details and save confirmation</text>
+
+  <!-- Delete attempt -->
+  <rect x="28" y="515" width="1344" height="27" fill="#eff6ff"/><text x="42" y="534" class="head">2. Delete account attempt (menu option 5)</text>
+  <path d="M107 565 H310" class="call"/><text x="207" y="559" text-anchor="middle" class="msg">delete account 1001</text>
+  <path d="M310 595 H550" class="call"/><text x="430" y="589" text-anchor="middle" class="msg">check account balance</text>
+  <path d="M550 625 H310" class="ret"/><text x="430" y="619" text-anchor="middle" class="msg">balance is nonzero</text>
+  <path d="M310 655 H107" class="ret"/><text x="207" y="649" text-anchor="middle" class="msg">reject deletion: withdraw all money first</text>
+
+  <!-- Balance check -->
+  <rect x="28" y="680" width="1344" height="27" fill="#eff6ff"/><text x="42" y="699" class="head">3. Check balance (menu option 6)</text>
+  <path d="M107 730 H310" class="call"/><text x="207" y="724" text-anchor="middle" class="msg">account 1002, PIN 1234, choice 1</text>
+  <path d="M310 760 H550" class="call"/><text x="430" y="754" text-anchor="middle" class="msg">find account and validate PIN</text>
+  <path d="M550 790 H310" class="ret"/><text x="430" y="784" text-anchor="middle" class="msg">valid account and PIN</text>
+  <path d="M310 820 H770" class="call"/><text x="540" y="814" text-anchor="middle" class="msg">checkBalance(account)</text>
+  <path d="M770 850 H107" class="ret"/><text x="438" y="844" text-anchor="middle" class="msg">print Current Balance: Rs. 30000</text>
+
+  <!-- Report and persistence -->
+  <rect x="28" y="875" width="1344" height="27" fill="#eff6ff"/><text x="42" y="894" class="head">4. Report, save, and exit (options 7, 8 → Save, 9)</text>
+  <path d="M107 925 H310" class="call"/><text x="207" y="919" text-anchor="middle" class="msg">choose Report</text>
+  <path d="M310 955 H107" class="ret"/><text x="207" y="949" text-anchor="middle" class="msg">print 2 accounts, total Rs. 50000, transaction history</text>
+  <path d="M107 985 H310" class="call"/><text x="207" y="979" text-anchor="middle" class="msg">Save Data, then Exit</text>
+  <path d="M310 1015 H990" class="call"/><text x="650" y="1009" text-anchor="middle" class="msg">saveData() on save and again on exit</text>
+  <path d="M990 1045 H1250" class="call"/><text x="1120" y="1039" text-anchor="middle" class="msg">rewrite files and print their contents</text>
+
+  <line x1="28" y1="1080" x2="1372" y2="1080" class="divider"/>
+  <text x="700" y="1103" text-anchor="middle" class="note">Transaction records are created for the opening deposits; checking balance does not add a transaction.</text>
+</svg>

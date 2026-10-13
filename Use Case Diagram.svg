@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="950" viewBox="0 0 1400 950">
+  <defs>
+    <style>
+      text { font-family: Arial, sans-serif; fill: #172033; }
+      .title { font-size: 28px; font-weight: bold; }
+      .label { font-size: 18px; font-weight: bold; }
+      .usecase { font-size: 16px; }
+      .actor { fill: #f1f5f9; stroke: #475569; stroke-width: 2; }
+      .boundary { fill: #f8fafc; stroke: #0284c7; stroke-width: 2; }
+      .oval { fill: #e0f2fe; stroke: #0284c7; stroke-width: 1.8; }
+      .line { stroke: #475569; stroke-width: 1.8; fill: none; }
+      .include { stroke: #64748b; stroke-width: 1.5; stroke-dasharray: 6 5; fill: none; }
+      .note { font-size: 14px; fill: #475569; }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="1400" height="950" fill="#ffffff"/>
+  <text x="700" y="48" text-anchor="middle" class="title">ATM Management System — Use Case Diagram</text>
+
+  <!-- System boundary -->
+  <rect x="300" y="100" width="790" height="790" rx="16" class="boundary"/>
+  <text x="695" y="135" text-anchor="middle" class="label">ATM Management System</text>
+
+  <!-- User actor -->
+  <circle cx="135" cy="435" r="27" class="actor"/>
+  <line x1="135" y1="462" x2="135" y2="545" class="line"/>
+  <line x1="90" y1="490" x2="180" y2="490" class="line"/>
+  <line x1="135" y1="545" x2="95" y2="600" class="line"/>
+  <line x1="135" y1="545" x2="175" y2="600" class="line"/>
+  <text x="135" y="635" text-anchor="middle" class="label">User / Admin</text>
+
+  <!-- File storage actor -->
+  <rect x="1190" y="395" width="145" height="85" rx="8" class="actor"/>
+  <path d="M1205 410 H1320 M1205 425 H1320 M1205 440 H1320" class="line"/>
+  <text x="1262" y="465" text-anchor="middle" class="usecase">Text files</text>
+  <text x="1262" y="505" text-anchor="middle" class="label">File Storage</text>
+
+  <!-- Use cases -->
+  <ellipse cx="500" cy="205" rx="145" ry="37" class="oval"/><text x="500" y="211" text-anchor="middle" class="usecase">Add account / card</text>
+  <ellipse cx="500" cy="300" rx="145" ry="37" class="oval"/><text x="500" y="306" text-anchor="middle" class="usecase">Display / search records</text>
+  <ellipse cx="500" cy="395" rx="145" ry="37" class="oval"/><text x="500" y="401" text-anchor="middle" class="usecase">Update account record</text>
+  <ellipse cx="500" cy="490" rx="145" ry="37" class="oval"/><text x="500" y="496" text-anchor="middle" class="usecase">Delete account record</text>
+
+  <ellipse cx="835" cy="205" rx="165" ry="37" class="oval"/><text x="835" y="211" text-anchor="middle" class="usecase">Check balance</text>
+  <ellipse cx="835" cy="300" rx="165" ry="37" class="oval"/><text x="835" y="306" text-anchor="middle" class="usecase">Deposit / withdraw</text>
+  <ellipse cx="835" cy="395" rx="165" ry="37" class="oval"/><text x="835" y="401" text-anchor="middle" class="usecase">Transfer funds</text>
+  <ellipse cx="835" cy="490" rx="165" ry="37" class="oval"/><text x="835" y="496" text-anchor="middle" class="usecase">Authenticate account PIN</text>
+
+  <ellipse cx="500" cy="620" rx="145" ry="37" class="oval"/><text x="500" y="626" text-anchor="middle" class="usecase">View transaction report</text>
+  <ellipse cx="500" cy="725" rx="145" ry="37" class="oval"/><text x="500" y="731" text-anchor="middle" class="usecase">Save / load data</text>
+  <ellipse cx="835" cy="620" rx="165" ry="37" class="oval"/><text x="835" y="626" text-anchor="middle" class="usecase">Exit system</text>
+
+  <!-- User associations -->
+  <path d="M180 470 L360 220" class="line"/>
+  <path d="M180 480 L360 310" class="line"/>
+  <path d="M180 490 L360 400" class="line"/>
+  <path d="M180 500 L360 490" class="line"/>
+  <path d="M180 510 L360 610" class="line"/>
+  <path d="M180 520 L360 715" class="line"/>
+  <path d="M180 495 L670 210" class="line"/>
+  <path d="M180 500 L670 305" class="line"/>
+  <path d="M180 505 L670 400" class="line"/>
+  <path d="M180 515 L670 615" class="line"/>
+
+  <!-- PIN authentication include relationship -->
+  <path d="M835 453 L835 340" class="include" marker-end="url(#arrow)"/>
+  <path d="M835 453 L835 242" class="include" marker-end="url(#arrow)"/>
+  <path d="M835 453 L835 437" class="include" marker-end="url(#arrow)"/>
+  <text x="851" y="367" class="note">&lt;&lt;include&gt;&gt;</text>
+
+  <!-- Persistence associations -->
+  <path d="M645 725 C850 825 1075 770 1190 470" class="line"/>
+  <path d="M645 620 C900 690 1085 625 1190 455" class="line"/>
+  <text x="963" y="765" class="note">read / write records</text>
+
+  <text x="700" y="855" text-anchor="middle" class="note">Account deletion is permitted only when the balance is zero. PIN verification is used for ATM transactions.</text>
+</svg>

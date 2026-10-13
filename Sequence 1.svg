@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="900" viewBox="0 0 1280 900">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#334155"/>
+    </marker>
+    <marker id="returnArrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <path d="M0,0 L10,4 L0,8 z" fill="#64748b"/>
+    </marker>
+    <style>
+      text { font-family: Arial, sans-serif; fill: #172033; }
+      .title { font-size: 26px; font-weight: bold; }
+      .head { font-size: 15px; font-weight: bold; }
+      .msg { font-size: 13px; }
+      .note { font-size: 13px; fill: #475569; }
+      .life { stroke: #94a3b8; stroke-width: 2; stroke-dasharray: 7 6; }
+      .call { stroke: #334155; stroke-width: 1.8; fill: none; marker-end: url(#arrow); }
+      .ret { stroke: #64748b; stroke-width: 1.6; stroke-dasharray: 6 4; fill: none; marker-end: url(#returnArrow); }
+      .actor { fill: #f1f5f9; stroke: #475569; stroke-width: 1.5; rx: 8; }
+      .box { fill: #e0f2fe; stroke: #0284c7; stroke-width: 1.5; rx: 8; }
+      .file { fill: #dcfce7; stroke: #16a34a; stroke-width: 1.5; rx: 8; }
+      .section { fill: #eff6ff; }
+    </style>
+  </defs>
+  <rect width="1280" height="900" fill="#fff"/>
+  <text x="640" y="40" text-anchor="middle" class="title">ATM Management System — Add Record Sequence</text>
+  <text x="640" y="65" text-anchor="middle" class="note">Example from the supplied run: create account 1002 for ABC with Rs. 30,000 opening balance</text>
+
+  <!-- Participants -->
+  <rect x="35" y="90" width="130" height="48" class="actor"/><text x="100" y="120" text-anchor="middle" class="head">User</text>
+  <rect x="235" y="90" width="170" height="48" class="box"/><text x="320" y="120" text-anchor="middle" class="head">ATMSystem</text>
+  <rect x="485" y="90" width="170" height="48" class="box"/><text x="570" y="120" text-anchor="middle" class="head">Account / Card</text>
+  <rect x="745" y="90" width="160" height="48" class="box"/><text x="825" y="120" text-anchor="middle" class="head">Transaction</text>
+  <rect x="995" y="90" width="160" height="48" class="box"/><text x="1075" y="120" text-anchor="middle" class="head">FileManager</text>
+  <rect x="1175" y="90" width="95" height="48" class="file"/><text x="1222" y="111" text-anchor="middle" class="head">Text</text><text x="1222" y="128" text-anchor="middle" class="head">files</text>
+
+  <!-- Lifelines -->
+  <line x1="100" y1="138" x2="100" y2="830" class="life"/>
+  <line x1="320" y1="138" x2="320" y2="830" class="life"/>
+  <line x1="570" y1="138" x2="570" y2="830" class="life"/>
+  <line x1="825" y1="138" x2="825" y2="830" class="life"/>
+  <line x1="1075" y1="138" x2="1075" y2="830" class="life"/>
+  <line x1="1222" y1="138" x2="1222" y2="830" class="life"/>
+
+  <rect x="25" y="155" width="1230" height="28" class="section"/>
+  <text x="40" y="175" class="head">Add Record — menu option 1</text>
+
+  <path d="M100 210 H320" class="call"/><text x="210" y="203" text-anchor="middle" class="msg">select Add Record</text>
+  <path d="M320 245 H100" class="ret"/><text x="210" y="238" text-anchor="middle" class="msg">ask for customer name</text>
+  <path d="M100 280 H320" class="call"/><text x="210" y="273" text-anchor="middle" class="msg">enter ABC</text>
+  <path d="M320 315 H100" class="ret"/><text x="210" y="308" text-anchor="middle" class="msg">ask for opening balance</text>
+  <path d="M100 350 H320" class="call"/><text x="210" y="343" text-anchor="middle" class="msg">enter Rs. 30,000</text>
+  <path d="M320 385 H570" class="call"/><text x="445" y="378" text-anchor="middle" class="msg">create Account 1002</text>
+  <path d="M320 420 H570" class="call"/><text x="445" y="413" text-anchor="middle" class="msg">create CARD1002 (PIN 1234)</text>
+  <path d="M320 455 H825" class="call"/><text x="572" y="448" text-anchor="middle" class="msg">record opening deposit: Rs. 30,000</text>
+  <path d="M320 490 H1075" class="call"/><text x="697" y="483" text-anchor="middle" class="msg">saveData()</text>
+
+  <rect x="25" y="515" width="1230" height="28" class="section"/>
+  <text x="40" y="535" class="head">Persist account, card, and transaction data</text>
+  <path d="M1075 570 H1222" class="call"/><text x="1148" y="563" text-anchor="middle" class="msg">write ACCOUNTS.TXT</text>
+  <path d="M1075 605 H1222" class="call"/><text x="1148" y="598" text-anchor="middle" class="msg">write CARDS.TXT</text>
+  <path d="M1075 640 H1222" class="call"/><text x="1148" y="633" text-anchor="middle" class="msg">write TRANS.TXT</text>
+  <path d="M1075 675 H1222" class="call"/><text x="1148" y="668" text-anchor="middle" class="msg">write ATM_DATA.TXT snapshot</text>
+  <path d="M1075 710 H1222" class="call"/><text x="1148" y="703" text-anchor="middle" class="msg">read and print saved file contents</text>
+  <path d="M320 750 H100" class="ret"/><text x="210" y="743" text-anchor="middle" class="msg">show account ID, card number, PIN, and save confirmation</text>
+
+  <text x="640" y="805" text-anchor="middle" class="note">An opening-deposit transaction is recorded only when the opening balance is greater than zero.</text>
+  <text x="640" y="828" text-anchor="middle" class="note">The diagram is an SVG image; export it as PNG in an image editor if PNG is required.</text>
+</svg>
